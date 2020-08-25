@@ -1,0 +1,9 @@
+Comandos para el sistema de colas PNS que administras el cluters "Diable"
+
+$ qsub + archivo.pbs (manda el trabajo "archivo.pbs" a la cola de trabajo y le asigna un numero de proceso)
+
+$ qstat (para ver qué se está corriendo en el cluster)
+
+$ qpeek + numero de proceso (para ver el estado del proceso lanzado))
+
+$ qdel + numero de proceso (para matar un proceso)
