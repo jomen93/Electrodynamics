@@ -2,15 +2,15 @@ program campo_B
 use omp_lib
 
  implicit none
- ! iterators 
- integer :: i,j, icount
- ! auxiliar variables 
+ ! iterators
+ integer :: i,j,icount,ifin
+ ! auxiliar variables
  real :: a,b,new
 
  ! grid parameters
  integer, parameter :: imax = 256
  integer, parameter :: jmax = 256
- ! step 
+ ! step
  real, parameter :: h = 1.0
  ! Constants (7 significant digits)
  real, parameter :: pi = 3.141593
@@ -21,9 +21,9 @@ use omp_lib
  real,     allocatable :: field_hy(:,:)
  real,     allocatable :: field_b(:,:)
  integer,  allocatable :: flag(:,:)
- ! flag is a array to identify points in the grid 
- ! choose which equation use in the grid 
- 
+ ! flag is a array to identify points in the grid
+ ! choose which equation use in the grid
+
  ! iman location 
  integer, parameter :: i1 = imax/2 - 20
  integer, parameter :: i2 = imax/2 + 20
@@ -90,11 +90,12 @@ use omp_lib
  do j = 1, jmax
   phi(imax,j) = v*m/(4.0*pi*(imax*h)**3)
  end do
-
+ 
+ ifin = 1000
  ! solution of the equation , sobre relaxation method 
  ! $omp parallel do
-    do icount = 1, 100000
-     write(*,fmt="(a3,a,t21,f6.2,a)",advance="no") achar(13), "progreso completo:    ", (real(icount)/100000)*100.0," %"
+    do icount = 1, ifin
+     write(*,fmt="(a3,a,t21,f6.2,a)",advance="no") achar(13), "progreso completo:    ", (real(icount)/ifin)*100.0," %"
 
      do i = 1, imax
       do j = 1, jmax  

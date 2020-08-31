@@ -17,10 +17,12 @@ field_hy = field_hy.reshape((256,256))
 plt.imshow(phi)
 plt.colorbar()
 plt.savefig("Magnetic_potential")
-plt.show()
+#plt.show()
 
 plt.imshow(np.sqrt(field_hx**2+field_hy**2))
 plt.colorbar()
 plt.savefig("field")
-plt.show()
+#plt.show()
 
+def f(x):
+	return x

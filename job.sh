@@ -2,9 +2,11 @@
 # Magnetic Field Inside cilynder
 # ==========================================================
 
-# Name of program 
+# Name of program :w
 
-time gfortran -g -fcheck=all -Wall campo_B.f90 -o campo_B -fopenmp
-./campo_B
+echo "compile the program"
+time gfortran -g -fcheck=all -Wall openmp.f90 -o openmp -fopenmp
+echo "execute the program"
+./openmp 
 
 rm -r *.dSYM 

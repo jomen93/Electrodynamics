@@ -1,5 +1,5 @@
 # =============================
-
+# Makefile to run magnetic cylinder problem
 # =============================
 
 PROGRAM= magnetic_cylinder
@@ -7,11 +7,11 @@ COMPILER= gfortran
 NAME= campo
 
 # Build compiler flas
-CFLAGS= -g -fcheck=all
+CFLAGS= -g -fcheck=all -Wall
 
 
 # Use OpenMP parallelization ?
-OPENMP = Y
+OPENMP = N
 
 
 ifeq ($(OPENMP),Y)
@@ -20,9 +20,14 @@ endif
 
 
 all: compile run
+
 compile: campo_B.f90
 	@$(COMPILER) $(CFLAGS) $< -o $(NAME) 
 
 run: compile
-	@./$(NAME)
-	@rm -r $(NAME) *.dSYM 
+	@time ./$(NAME)
+	@rm -r $(NAME) *.dSYM
+	@python plots.py
+
+clean: 
+	@rm *.png *.dat 
